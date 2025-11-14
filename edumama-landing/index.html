@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EduMama — Learning that starts at home</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo-text">
+        <!-- inline leaf SVG -->
+        <svg width="28" height="28" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M32 0C14.33 0 0 14.33 0 32s14.33 32 32 32 32-14.33 32-32S49.67 0 32 0z" fill="#4CAF50"/></svg>
+        <span class="brand-name">EduMama</span>
+      </div>
+      <nav>
+        <a href="#why">Why</a>
+        <a href="#pilot">Pilot</a>
+        <a href="grade-r.html">Grade R Hub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="background-image: url('images/hero.jpg');">
+      <div class="overlay"></div>
+      <div class="hero-text">
+        <h1>Learning that starts at home, grows with the community</h1>
+        <p>Train a mother. Teach a child. Track progress offline.</p>
+        <a href="#pilot" class="cta-button">Join the Pilot (WhatsApp)</a>
+      </div>
+    </section>
+
+    <section id="why" class="container card">
+      <h2>Why EduMama?</h2>
+      <p>Township children are excluded from school or fall behind due to poverty and family responsibilities. EduMama trains mothers as micro-educators and delivers offline-friendly lessons, storybooks and simple graded tracking so children learn and mothers earn skills.</p>
+    </section>
+
+    <section id="pilot" class="container card">
+      <h2>Pilot Sign-up (Mothers)</h2>
+      <p class="small">Join our pilot: we provide training, simple lesson plans and support. Pilot runs 6 weeks.</p>
+
+      <form id="pilotForm">
+        <input name="name" placeholder="Full name" required>
+        <input name="phone" placeholder="Phone (0823919534 preferred)" required>
+        <select name="grade" required>
+          <option value="R">Grade R</option>
+          <option value="1">Grade 1</option>
+        </select>
+        <button type="submit" class="btn">Sign up</button>
+      </form>
+
+      <div style="margin-top:12px" id="pilotMsg" class="small"></div>
+
+      <hr>
+
+      <h3>Offline Progress & Sync</h3>
+      <p class="small">Lessons tracked on device. Export CSV or sync when online.</p>
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <button id="exportBtn" class="btn">Export CSV</button>
+        <button id="clearBtn" class="btn" style="background:#c0392b">Clear local data</button>
+        <div id="onlineStatus" class="small">Status: <strong id="statusText">--</strong></div>
+      </div>
+    </section>
+
+    <footer class="container card small">
+      <p>Contact via WhatsApp: <a href="https://wa.me/27823919534">082 391 9534</a> • info@edumama.org</p>
+      <p>&copy; 2025 EduMama</p>
+    </footer>
+  </main>
+
+  <script src="js/offline-tracker.js"></script>
+
+  <script>
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/service-worker.js').catch(()=>{/* ignore */});
+  }
+  </script>
+</body>
+</html>

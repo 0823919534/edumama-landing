@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EduMama — Grade R Learning Hub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* small overrides so the Grade R page looks good */
+    .hub-header { padding:24px 0; text-align:center; }
+    .hub-grid { display:flex; flex-direction:column; gap:18px; max-width:1100px; margin:20px auto; padding:0 16px;}
+    .card { background:#fff; border-radius:10px; padding:18px; box-shadow:0 6px 16px rgba(0,0,0,0.08);}
+    .card h3 { margin:0 0 8px 0; color:#2b6d2b; }
+    .flex-row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    .btn { background:#4caf50; color:#fff; padding:10px 14px; border-radius:8px; text-decoration:none; font-weight:600; }
+    .small { font-size:0.9rem; color:#555;}
+    .progress { width:100%; background:#eee; border-radius:8px; height:12px; overflow:hidden;}
+    .progress > i { display:block; height:100%; background:linear-gradient(90deg,#4caf50,#7ad27a); width:0%; }
+    .lang-note { font-size:0.9rem; color:#333; margin-top:6px; }
+    iframe.story { width:100%; height:420px; border:0; border-radius:8px; }
+  </style>
+</head>
+<body>
+  <header class="hero" style="background: url('https://images.pexels.com/photos/1102570/pexels-photo-1102570.jpeg') center/cover no-repeat; height:260px;">
+    <div class="overlay"></div>
+    <div style="position:relative; z-index:2; padding:28px; text-align:center; color:white;">
+      <h1 style="margin:0 0 6px">EduMama — Grade R Learning Hub</h1>
+      <p style="margin:0">English + isiZulu • CAPS-aware • Offline-friendly links & printable books</p>
+    </div>
+  </header>
+
+  <main class="hub-grid">
+    <!-- Overview / Progress -->
+    <section class="card">
+      <div class="flex-row" style="justify-content:space-between; align-items:center;">
+        <div>
+          <h3>Welcome, EduMama caregiver</h3>
+          <p class="small">Quick start: play a story, do the short practice, submit the 3-question quiz. We track progress here on this device.</p>
+        </div>
+        <div style="min-width:260px;">
+          <div class="small">Term progress (this device)</div>
+          <div class="progress" aria-hidden="true"><i id="progbar" style="width:0%"></i></div>
+          <div class="small" style="margin-top:6px">Completed: <span id="prognum">0</span>/3 lessons</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lesson: Story (isiZulu) -->
+    <section class="card">
+      <h3>Storytime (isiZulu)</h3>
+      <div class="small">Read-aloud: "Usuku lwami lokuqala esikoleni" — African Storybook (downloadable PDF & reader)</div>
+      <iframe class="story" src="https://www.africanstorybook.org/read/downloadbook.php?a=1&d=0&id=7485&layout=landscape" title="Usuku lwami lokuqala"></iframe>
+      <div style="margin-top:10px;" class="flex-row">
+        <a class="btn" href="#" onclick="markDone('story1'); recordProgress('story1'); return false;">Mark lesson done</a>
+        <a class="btn" href="https://nalibali.org/audio_stories/isizulu/" target="_blank">Play isiZulu audio stories (Nal'ibali)</a>
+      </div>
+      <div class="lang-note">Tip: Print the pages for shared reading or download the PDF for offline use.</div>
+    </section>
+
+    <!-- Lesson: Numeracy (Siyavula) -->
+    <section class="card">
+      <h3>Numeracy (Counting & shapes)</h3>
+      <div class="small">Use Siyavula practice for early number routines and printable worksheets (CAPS-aligned).</div>
+      <div style="margin-top:8px;">
+        <a class="btn" href="https://www.siyavula.com/read" target="_blank">Open Siyavula learner books</a>
+        <a class="btn" href="#" onclick="markDone('math1'); recordProgress('math1'); return false;">Mark lesson done</a>
+      </div>
+      <div class="lang-note">Siyavula offers free downloads & practice questions you can use with learners.</div>
+    </section>
+
+    <!-- Lesson: Literacy (phonics + book) -->
+    <section class="card">
+      <h3>Phonics & Early Literacy (English)</h3>
+      <div class="small">Short phonics video + printable activity sheet from BookDash and African Storybook.</div>
+      <div style="margin-top:8px;">
+        <a class="btn" href="https://bookdash.org/books/" target="_blank">Open Book Dash library</a>
+        <a class="btn" href="#" onclick="markDone('phonics1'); recordProgress('phonics1'); return false;">Mark lesson done</a>
+      </div>
+      <div class="lang-note">Tip: Play the phonics video, then ask the child to trace letters on a page and submit a photo to your teacher for merit.</div>
+    </section>
+
+    <!-- Quick quizzes (placeholders: use Google Forms links) -->
+    <section class="card">
+      <h3>Quick quizzes</h3>
+      <p class="small">Each lesson should have a 3-question Google Form for auto-grading. Create a form and paste its share URL below:</p>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <input id="quizUrl" placeholder="Paste Google Form URL for Grade R quizzes" style="flex:1; padding:10px; border-radius:6px; border:1px solid #ddd;">
+        <button class="btn" onclick="saveQuizUrl()">Save</button>
+      </div>
+      <div style="margin-top:8px" class="small">When a form URL is saved it will open in a new tab for parents to complete and results will go to your Google account spreadsheet.</div>
+    </section>
+
+    <!-- Attribution & licensing -->
+    <section class="card small">
+      <strong>Licensing & Attributions</strong>
+      <ul>
+        <li>African Storybook materials — open CC licensing (reader & PDFs).</li>
+        <li>BookDash — CC BY 4.0 picture storybooks for download/print.</li>
+        <li>Siyavula — openly-licensed learner content & practice resources.</li>
+        <li>CAPS curriculum references from DBE guide our lesson sequencing.</li>
+      </ul>
+      <div class="small">Always credit the source when you print or share. See privacy & consent for learner data on the main EduMama site.</div>
+    </section>
+  </main>
+
+<script>
+  // Simple local progress tracker (3 lessons example)
+  const LESSONS = ['story1','math1','phonics1'];
+  function getDone() {
+    const raw = localStorage.getItem('edumama_gradeR_done') || '{}';
+    return JSON.parse(raw);
+  }
+  function saveDone(obj) { localStorage.setItem('edumama_gradeR_done', JSON.stringify(obj)); updateUI(); }
+  function markDone(key) {
+    const done = getDone(); done[key] = true; saveDone(done);
+    alert('Marked done — nice work!');
+  }
+  function updateUI() {
+    const done = getDone(); const doneCount = LESSONS.filter(k=>done[k]).length;
+    document.getElementById('prognum').textContent = doneCount;
+    document.getElementById('progbar').style.width = Math.round((doneCount/LESSONS.length)*100)+'%';
+  }
+  function saveQuizUrl(){
+    const url = document.getElementById('quizUrl').value.trim();
+    if(!url) return alert('Paste the Google Form URL first');
+    localStorage.setItem('edumama_gradeR_quiz', url);
+    window.open(url,'_blank');
+  }
+
+  function recordProgress(lessonId){
+    if(window.EduMamaLocal && typeof window.EduMamaLocal.addProgress === 'function'){
+      EduMamaLocal.addProgress({
+        childName: localStorage.getItem('edumama_current_child') || 'unknown',
+        lessonId: lessonId,
+        score: null,
+        timestamp: new Date().toISOString()
+      });
+    }
+    // also mark done for visual feedback
+    markDone(lessonId);
+  }
+
+  // initialize
+  updateUI();
+</script>
+
+</body>
+</html>
